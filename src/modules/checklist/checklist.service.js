@@ -5,7 +5,8 @@ async function list(userId) {
   try {
     const [rows] = await conn.query(
       `SELECT c.id, c.title, c.description, c.created_at AS createdAt,
-              (SELECT COUNT(*) FROM checklist_items ci WHERE ci.checklist_id = c.id) AS itemCount
+              (SELECT COUNT(*) FROM checklist_items ci WHERE ci.checklist_id = c.id) AS itemCount,
+              (SELECT COUNT(*) FROM checklist_members cm WHERE cm.checklist_id = c.id) AS members
        FROM checklists c
        WHERE c.owner_id = ?
        ORDER BY c.created_at DESC`,

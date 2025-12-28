@@ -9,6 +9,7 @@ const swaggerSpec = require("./swagger");
 
 const { errorHandler } = require("./common/middleware/errorHandler");
 const authRouter = require("./modules/auth/auth.route");
+const checklistRouter = require("./modules/checklist/checklist.route");
 const postRouters = require("./modules/post/post.route");
 const userRouter = require("./modules/user/user.route");
 
@@ -29,6 +30,7 @@ app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // API 라우터
 app.use("/api/auth", authRouter);
+app.use("/api/checklists", checklistRouter);
 app.use("/api/posts", postRouters);
 app.use("/api/user", userRouter);
 
